@@ -1,0 +1,76 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">ToDo App</a>
+
+  <button type="button" (click)="handleSignUp()" class="btn btn-warning" *ngIf="isSignUp">SignUp</button>
+  <button type="button" (click)="handleSignIn()" class="btn btn-primary" *ngIf="isSignIn">SignIn</button>
+
+</nav>
+
+<div style="margin:10%; padding-left: 15%; padding-right: 15%;">
+
+  <div class="form-group" *ngIf="isSignIn">
+    <label for="name">Name</label>
+    <input type="text" [ngModel]="name" (ngModelChange)="onInputName($event)" class="form-control"
+      placeholder="enter your name">
+    <div class="text-danger" *ngIf="nameErrors">Name is Required</div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" [ngModel]="email" (ngModelChange)="onInputEmail($event)"
+      aria-describedby="emailHelp" placeholder="enter your email" email>
+    <div class="text-danger" *ngIf="emailErrors">Email is Required</div>
+    <div class="text-danger" *ngIf="validEmailError">Email not valid</div>
+    <div class="text-danger" *ngIf="emailError">Email not Registered</div>
+    <div class="text-danger" *ngIf="emailNewError">Email already Registered</div>
+
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" [ngModel]="password" (ngModelChange)="onInputPassword($event)"
+      placeholder="enter your password">
+    <div class="text-danger" *ngIf="passwordErrors">Password is Required</div>
+    <div class="text-danger" *ngIf="passwordError">Password not match</div>
+
+
+  </div>
+  <div class="form-group" *ngIf="isForgot">
+
+    <div class="form-group">
+      <label for="password">Confirm Password</label>
+      <input type="password" class="form-control" [ngModel]="confirmPassword"
+        (ngModelChange)="onInputConfirmPassword($event)" placeholder="confirm your password">
+      <div class="text-danger" *ngIf="confirmPasswordErrors">Confirm Password is Required</div>
+      <!-- <div class="text-danger" *ngIf="passwordError">Password not match</div>   -->
+
+
+    </div>
+
+  </div>
+
+
+
+  <a href="javascript:void(0)" (click)="onForgot()" *ngIf="isShowForgot">Forgot Password?</a>
+
+  <br />
+  <br />
+
+
+  <button type="submit" class="btn btn-primary" *ngIf="isSignUp" (click)="onSignIn()">SignIn</button>
+  <button type="submit" class="btn btn-warning" *ngIf="isSignIn" (click)="onSignUp()">SignUp</button>
+  <button type="submit" class="btn btn-danger" *ngIf="isForgot" (click)="onResetPassword()">Reset Password</button>
+
+
+
+
+  <div class="text-success" *ngIf="signSuccess">Signin SuccessFully</div>
+  <div class="text-success" *ngIf="regSuccess">Registered SuccessFully</div>
+
+  <div class="text-danger" *ngIf="matchPasswordError">Password not match</div>
+
+
+
+
+
+
+
+</div>
