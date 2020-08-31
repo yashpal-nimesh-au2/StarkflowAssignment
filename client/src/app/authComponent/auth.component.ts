@@ -33,6 +33,7 @@ export class AuthComponent {
   confirmPasswordErrors = false;
   validEmailError = false;
   matchPasswordError = false;
+  isReset=false;
 
 
 
@@ -412,6 +413,8 @@ export class AuthComponent {
 
 
               this.service.forgotPassword(obj)
+
+              this.isReset=true;
 
 
             }
